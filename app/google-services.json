@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "1082890604971",
+    "firebase_url": "https://android-chat-65b43.firebaseio.com",
+    "project_id": "android-chat-65b43",
+    "storage_bucket": "android-chat-65b43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082890604971:android:65e5b85a199fe283",
+        "android_client_info": {
+          "package_name": "com.lehu.mychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082890604971-41o6lfi1hdsho4ln9i7fkgui56h0u9gj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lehu.mychat",
+            "certificate_hash": "26b05ccc685c37bba66ea218ecb8edb72b575fd2"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMFJj7UB_oHO5wKQ2M7QBPuE6bYyeMVuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082890604971-d8kotht8bing9ud4mfugks5c4ta9u2to.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
