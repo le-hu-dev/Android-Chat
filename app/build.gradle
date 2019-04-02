@@ -4,7 +4,7 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.lehu.chat"
+        applicationId "com.lehu.mychat"
         minSdkVersion 28
         targetSdkVersion 28
         versionCode 1
@@ -23,9 +23,20 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    //firebase
+    // firebase for auth
     implementation 'com.google.firebase:firebase-auth:16.0.3'
+    // for real-time;
     implementation 'com.google.firebase:firebase-database:16.0.1'
+    // core for analytics
+    implementation 'com.google.firebase:firebase-core:16.0.3'
+
+    // Matiral UI
+    // for test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
 }
+
+

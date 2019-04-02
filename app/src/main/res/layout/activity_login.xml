@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".LoginActivity">
+
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/bar_layout"/>
@@ -21,17 +23,9 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create a new account"
+            android:text="Login"
             android:textStyle="bold"
             android:textSize="20sp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/username"
-            android:hint="Username"
-            android:layout_marginTop="10dp"
-            />
 
         <EditText
             android:layout_width="match_parent"
@@ -54,9 +48,9 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_register"
+            android:id="@+id/btn_login"
             android:layout_marginTop="10dp"
-            android:text="reister"
+            android:text="login"
             android:textColor="#fff"
             />
 

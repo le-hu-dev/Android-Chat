@@ -1,4 +1,4 @@
-package com.lehu.chat;
+package com.lehu.mychat;
 
 import org.junit.Test;
 
