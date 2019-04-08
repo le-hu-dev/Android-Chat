@@ -28,22 +28,22 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/email"
+            android:layout_marginTop="10dp"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:layout_marginTop="10dp"
-            />
+            android:text="le.hu@outlook.com" />
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="password"
             android:inputType="textPassword"
-            android:id="@+id/password"
-            />
+            android:text="111111" />
 
         <Button
             android:layout_width="match_parent"

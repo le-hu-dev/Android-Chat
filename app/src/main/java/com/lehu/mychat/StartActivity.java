@@ -16,17 +16,23 @@ public class StartActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+    protected void onStart() {
+        super.onStart();
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if (firebaseUser != null) {
-            Intent intent = new Intent(StartActivity.this, LoginActivity.class);
+            Intent intent = new Intent(StartActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_start);
+
 
         login = findViewById(R.id.login);
         register = findViewById(R.id.register);
@@ -34,7 +40,7 @@ public class StartActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StartActivity.this,LoginActivity.class));
+                startActivity(new Intent(StartActivity.this, LoginActivity.class));
             }
         });
 
