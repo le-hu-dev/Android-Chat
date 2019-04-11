@@ -3,6 +3,8 @@ package com.lehu.mychat;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,10 +22,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.lehu.mychat.Adapter.MessageAdapter;
+import com.lehu.mychat.Model.Chat;
 import com.lehu.mychat.Model.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 public class MessageActivity extends AppCompatActivity {
 
@@ -35,7 +41,10 @@ public class MessageActivity extends AppCompatActivity {
     ImageButton btn_send;
     EditText text_send;
 
-    Intent intent;
+    MessageAdapter messageAdapter;
+    List<Chat> mchat;
+
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +56,13 @@ public class MessageActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+//        recyclerView.setAdapter(messageAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +73,7 @@ public class MessageActivity extends AppCompatActivity {
         btn_send = findViewById(R.id.btn_send);
         text_send = findViewById(R.id.text_send);
         username = findViewById(R.id.username);
+
 
         Intent intent = getIntent();
         final String userid = intent.getStringExtra("userid");
@@ -82,8 +99,12 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 username.setText(user.getUsername());
-                //todo: set profile img
+                //todo: set profile img in toolbar
+                if (user.getImageURL().equals("default")) {
 
+                }
+
+                readMessages(firebaseUser.getUid(), userid, user.getImageURL());
             }
 
             @Override
@@ -103,5 +124,32 @@ public class MessageActivity extends AppCompatActivity {
         hashMap.put("message", message);
 
         reference.child("Chats").push().setValue(hashMap);
+    }
+
+    private void readMessages(final String myid, final String userid, final String imageurl) {
+        mchat = new ArrayList<>();
+        reference = FirebaseDatabase.getInstance().getReference("Chats");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mchat.clear();
+                for (DataSnapshot snapshot :
+                        dataSnapshot.getChildren()) {
+                    Chat chat = snapshot.getValue(Chat.class);
+                    if (chat.getReceiver().equals(myid) && chat.getSender().equals(userid)
+                            || chat.getReceiver().equals(userid) && chat.getSender().equals(myid)) {
+                        mchat.add(chat);
+                    }
+                }
+                messageAdapter = new MessageAdapter(MessageActivity.this, mchat, imageurl);
+                recyclerView.setAdapter(messageAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }
