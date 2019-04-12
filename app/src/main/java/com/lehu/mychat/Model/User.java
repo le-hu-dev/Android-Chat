@@ -1,5 +1,7 @@
 package com.lehu.mychat.Model;
 
+import java.util.Objects;
+
 public class User {
     private String id;
     private String username;
@@ -21,6 +23,19 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(getId(), user.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 
     public String getUsername() {
